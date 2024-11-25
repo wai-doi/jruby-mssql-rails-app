@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  app:
+    image: jruby:9.4.8.0-jdk11
+    command: sleep infinity
+    environment:
+      DB_USER: sa
+      DB_PASSWORD: Passw0rd!
+    volumes:
+      - ../..:/workspaces:cached
+      - bundle:/usr/local/bundle
+    network_mode: service:db
+
+  db:
+    platform: linux/amd64
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: Passw0rd!
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+volumes:
+  bundle:
+  mssql-data:
