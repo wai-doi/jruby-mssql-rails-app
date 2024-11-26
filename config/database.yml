@@ -37,15 +37,15 @@
 # connection string:
 
 default: &default
-  adapter: jdbc
+  adapter: sqlserver
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: jruby_mssql_rails_app
-  password:
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   driver:
 
 development:
   <<: *default
-  url: jdbc:db://localhost/jruby_mssql_rails_app_development
+  database: jruby_mssql_rails_app_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
