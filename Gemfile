@@ -10,7 +10,11 @@ gem "rails", "~> 7.0.8", ">= 7.0.8.6"
 gem "sprockets-rails"
 
 # Use jdbc as the database for Active Record
-gem "activerecord-jdbc-adapter"
+# https://github.com/JesseChavez/activerecord-jdbc-adapter
+platforms :jruby do
+  gem "activerecord-jdbc-alt-adapter", "70.2.0"
+  gem "jdbc-mssql", "0.9.0"
+end
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
